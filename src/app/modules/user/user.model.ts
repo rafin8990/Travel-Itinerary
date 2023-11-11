@@ -1,51 +1,42 @@
-import { Schema, model } from 'mongoose';
-import { BangladeshDistrict, IUser,  userModel } from './user.interface';
-
+import { Schema, model } from "mongoose";
+import {  IUser, userModel } from "./user.interface";
+import { string } from "zod";
 
 const userSchema = new Schema<IUser, Record<string, never>>(
   {
+    phoneNumber:{
+      type:String,
+      required:true
+    },
+    password:{
+      type:String,
+      required:true
+    },
     name: {
+      firstName: {
         type: String,
         required: true,
       },
-      dates: {
-        startDate: {
-          type: Date,
-          required: true,
-        },
-        endDate: {
-          type: Date,
-          required: true,
-        },
-      },
-      destinations: {
-        type: [
-          {
-            type: String,
-            enum: Object.values(BangladeshDistrict),
-          },
-        ],
-        required: true,
-      },
-      activities: {
-        type: [String],
-        required: true,
-      },
-      transportationDetails: {
+    middleName: {
         type: String,
         required: true,
       },
-      accommodationDetails: {
+      lastName: {
         type: String,
         required: true,
       },
+    },
+    address:{
+      type:String,
+      required:true
+    }
   },
   {
     timestamps: true,
     toJSON: {
       virtuals: true,
     },
-  },
+  }
 );
 
-export const User = model<IUser, userModel>('User', userSchema);
+export const User = model<IUser, userModel>("User", userSchema);
