@@ -1,23 +1,27 @@
 import { Schema, model } from "mongoose";
-import {  IUser, userModel } from "./user.interface";
-import { string } from "zod";
+import { IUser, userModel } from "./user.interface";
 
 const userSchema = new Schema<IUser, Record<string, never>>(
   {
-    phoneNumber:{
-      type:String,
-      required:true
+    phoneNumber: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    password:{
-      type:String,
-      required:true
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      required: true,
     },
     name: {
       firstName: {
         type: String,
         required: true,
       },
-    middleName: {
+      middleName: {
         type: String,
         required: true,
       },
@@ -26,10 +30,10 @@ const userSchema = new Schema<IUser, Record<string, never>>(
         required: true,
       },
     },
-    address:{
-      type:String,
-      required:true
-    }
+    address: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
