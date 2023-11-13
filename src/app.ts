@@ -10,11 +10,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1', routes);
+app.use(globalErrorHandler);
 app.get('/', (req: Request, res: Response) => {
   res.send('Travel Itinerary applicationh running succesfully ');
 });
-
-app.use(globalErrorHandler);
 
 //handle not found
 app.use((req: Request, res: Response, next: NextFunction) => {

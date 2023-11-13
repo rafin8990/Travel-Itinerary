@@ -23,7 +23,6 @@ const userSchema = new Schema<IUser, Record<string, never>>(
       },
       middleName: {
         type: String,
-        required: true,
       },
       lastName: {
         type: String,
